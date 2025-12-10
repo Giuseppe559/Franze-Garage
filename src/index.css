@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* custom scrollbar for scrollable containers */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 #e5e7eb;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 8px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #f97316;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+}
+
+.scrollbar-custom:hover::-webkit-scrollbar-thumb {
+  background-color: #ea580c;
+}
