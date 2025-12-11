@@ -10,6 +10,11 @@ type Page = 'home' | 'detail' | 'admin';
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [selectedCarId, setSelectedCarId] = useState<string>('');
+  const [showConsent, setShowConsent] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    const v = localStorage.getItem('cookie_consent');
+    return v !== 'accepted' && v !== 'rejected';
+  });
 
   const handleNavigate = (page: string, carId?: string) => {
     setCurrentPage(page as Page);
@@ -20,11 +25,43 @@ function App() {
   };
 
   useEffect(() => {
-    let title = 'Franzè Garage - La tua concessionaria di fiducia';
+    let title = 'Franzè Garage, la tua concessionaria di fiducia';
     if (currentPage === 'detail') title = 'Dettaglio Auto - Franzè Garage';
     if (currentPage === 'admin') title = 'Amministrazione - Franzè Garage';
     document.title = title;
+
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'page_view', {
+        page_title: title,
+        page_location: window.location.href,
+        page_path: window.location.pathname,
+      });
+    }
   }, [currentPage]);
+
+  const acceptConsent = () => {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+      });
+      window.gtag('event', 'consent_update', { status: 'accepted' });
+    }
+    localStorage.setItem('cookie_consent', 'accepted');
+    setShowConsent(false);
+  };
+
+  const rejectConsent = () => {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+      });
+      window.gtag('event', 'consent_update', { status: 'rejected' });
+    }
+    localStorage.setItem('cookie_consent', 'rejected');
+    setShowConsent(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -39,6 +76,22 @@ function App() {
       </main>
 
       <Footer />
+
+      {showConsent && (
+        <div className="fixed bottom-0 inset-x-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+            <div className="bg-white border border-gray-200 shadow-lg rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <div className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-0">
+                Usiamo cookie per analisi e migliorare l'esperienza. Puoi accettare o rifiutare gli strumenti di analisi.
+              </div>
+              <div className="flex items-center gap-2">
+                <button onClick={rejectConsent} className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 text-gray-700 text-sm font-semibold">Rifiuta</button>
+                <button onClick={acceptConsent} className="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold">Accetta</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

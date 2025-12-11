@@ -1,26 +1,40 @@
+import { useEffect, useState } from 'react';
 import { Star, Quote } from 'lucide-react';
+import { supabase } from '../lib/supabase';
+
+type Review = { name: string; rating: number; text: string; date: string };
+
+const fallbackReviews: Review[] = [
+  { name: 'Marco R.', rating: 5, text: "Esperienza eccellente. Ho trovato l'auto perfetta e il team è stato professionale e disponibile in ogni fase.", date: 'Novembre 2024' },
+  { name: 'Laura M.', rating: 5, text: 'Servizio impeccabile, auto in condizioni perfette e finanziamento personalizzato. Consigliatissimo!', date: 'Ottobre 2024' },
+  { name: 'Giuseppe T.', rating: 5, text: 'Professionalità e trasparenza. La permuta della mia vecchia auto è stata veloce e onesta.', date: 'Settembre 2024' },
+];
 
 export default function ReviewsSection() {
-  const reviews = [
-    {
-      name: 'Marco R.',
-      rating: 5,
-      text: 'Esperienza eccellente. Ho trovato l\'auto perfetta e il team è stato professionale e disponibile in ogni fase.',
-      date: 'Novembre 2024'
-    },
-    {
-      name: 'Laura M.',
-      rating: 5,
-      text: 'Servizio impeccabile, auto in condizioni perfette e finanziamento personalizzato. Consigliatissimo!',
-      date: 'Ottobre 2024'
-    },
-    {
-      name: 'Giuseppe T.',
-      rating: 5,
-      text: 'Professionalità e trasparenza. La permuta della mia vecchia auto è stata veloce e onesta.',
-      date: 'Settembre 2024'
-    }
-  ];
+  const [reviews, setReviews] = useState<Review[]>(fallbackReviews);
+  type FnResp = { reviews?: Array<{ name?: string; rating?: number; text?: string; date?: string }> };
+
+  useEffect(() => {
+    let isMounted = true;
+    (async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-google-reviews', { body: {} });
+        const resp = (data as FnResp) ?? {};
+        if (!error && resp.reviews && Array.isArray(resp.reviews) && resp.reviews.length > 0) {
+          const mapped: Review[] = resp.reviews.map((r) => ({
+            name: String(r.name || ''),
+            rating: Number(r.rating || 0),
+            text: String(r.text || ''),
+            date: String(r.date || ''),
+          }));
+          if (isMounted) setReviews(mapped);
+        }
+      } catch {
+        // noop: fallbackReviews already set
+      }
+    })();
+    return () => { isMounted = false; };
+  }, []);
 
   return (
     <section className="py-20 bg-white">

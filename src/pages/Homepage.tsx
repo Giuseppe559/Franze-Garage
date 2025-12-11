@@ -5,7 +5,6 @@ import { Search, Calendar, Fuel, Gauge, ArrowRight } from 'lucide-react';
 import ServicesSection from '../components/ServicesSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import ContactForm from '../components/ContactForm';
-import ReviewsSection from '../components/ReviewsSection';
 import { supabase, Car } from '../lib/supabase';
 
 interface HomepageProps {
@@ -370,7 +369,6 @@ export default function Homepage({ onNavigate }: HomepageProps) {
       </section>
       <ServicesSection />
       <WhyChooseUs />
-      <ReviewsSection />
       <ContactForm />
     </div>
   );

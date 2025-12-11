@@ -36,6 +36,9 @@ export default function ContactForm() {
 
       if (!error) {
         setSubmitStatus('success');
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', { source: 'contact_form' });
+        }
         const { data: notifyData, error: notifyErr } = await supabase.functions.invoke('notify-request', { body: { formData } });
         if (notifyErr) {
           setNotifyError(notifyErr.message || 'Notifica non inviata');
@@ -75,7 +78,7 @@ export default function ContactForm() {
             Hai Trovato l'Auto Che Cerchi? Contattaci!
           </h2>
           <p className="text-xl text-gray-600">
-            Compila il modulo per ricevere informazioni, fissare un appuntamento o richiedere un test drive.
+            compila il modulo per ricevere maggiori informaioni, fissare un appuntamento, richiedere un test drive o ottenere una valutazione della tua auto
           </p>
         </div>
 

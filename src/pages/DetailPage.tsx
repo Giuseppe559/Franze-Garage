@@ -97,6 +97,9 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
 
       if (!error) {
         setSubmitStatus('success');
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', { source: 'detail_form', car: car ? `${car.brand} ${car.model}` : '' });
+        }
         if (typeof window !== 'undefined') {
           window.open(waUrl, '_blank');
           window.open(mailtoUrl, '_blank');
