@@ -4,8 +4,12 @@ import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import DetailPage from './pages/DetailPage';
 import AdminPage from './pages/AdminPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+import FloatingActions from './components/FloatingActions';
 
-type Page = 'home' | 'detail' | 'admin';
+type Page = 'home' | 'detail' | 'admin' | 'contact' | 'privacy' | 'cookie';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -28,6 +32,9 @@ function App() {
     let title = 'Franzè Garage, la tua concessionaria di fiducia';
     if (currentPage === 'detail') title = 'Dettaglio Auto - Franzè Garage';
     if (currentPage === 'admin') title = 'Amministrazione - Franzè Garage';
+    if (currentPage === 'contact') title = 'Contatti - Franzè Garage';
+    if (currentPage === 'privacy') title = 'Privacy Policy - Franzè Garage';
+    if (currentPage === 'cookie') title = 'Cookie Policy - Franzè Garage';
     document.title = title;
 
     if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
@@ -73,9 +80,14 @@ function App() {
           <DetailPage carId={selectedCarId} onNavigate={handleNavigate} />
         )}
         {currentPage === 'admin' && <AdminPage onNavigate={handleNavigate} />}
+        {currentPage === 'contact' && <ContactPage onNavigate={handleNavigate} />}
+        {currentPage === 'privacy' && <PrivacyPolicy />}
+        {currentPage === 'cookie' && <CookiePolicy />}
       </main>
 
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
+
+      <FloatingActions />
 
       {showConsent && (
         <div className="fixed bottom-0 inset-x-0 z-50">

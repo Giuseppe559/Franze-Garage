@@ -34,6 +34,12 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             >
               Inventario Auto
             </button>
+            <button
+              onClick={() => onNavigate('contact')}
+              className="transition-colors hover:text-orange-500"
+            >
+              Contatti
+            </button>
           </div>
           <div className="flex items-center space-x-4">
             <a

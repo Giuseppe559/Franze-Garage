@@ -1,11 +1,20 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, MessageCircle } from 'lucide-react';
 
-export default function Footer() {
+interface FooterProps {
+  onNavigate?: (page: string) => void;
+}
+
+export default function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-gray-900 text-white pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
+            <img
+              src="/88.jpg"
+              alt="Franzè Garage"
+              className="w-24 md:w-32 lg:w-40 h-auto mb-4 object-contain mx-auto md:mx-0 mix-blend-multiply opacity-90"
+            />
             <p className="text-gray-400 text-sm leading-relaxed">
               La tua concessionaria di fiducia. Selezioniamo con cura auto usate garantite per ogni tuo viaggio.
             </p>
@@ -110,8 +119,8 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
             <p>&copy; 2024 Franzè Garage. Tutti i diritti riservati.</p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <a href="#" className="hover:text-orange-500 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-orange-500 transition-colors">Cookie Policy</a>
+              <button type="button" onClick={() => onNavigate && onNavigate('privacy')} className="hover:text-orange-500 transition-colors">Privacy Policy</button>
+              <button type="button" onClick={() => onNavigate && onNavigate('cookie')} className="hover:text-orange-500 transition-colors">Cookie Policy</button>
               <span>P.iva: IT04401580982</span>
             </div>
           </div>

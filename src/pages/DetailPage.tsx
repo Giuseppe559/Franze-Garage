@@ -69,6 +69,13 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
     fetchCar();
   }, [carId]);
 
+  useEffect(() => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+    if (!isMobile) return;
+    document.body.style.overflow = isLightboxOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isLightboxOpen]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -553,7 +560,7 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
       </div>
 
       {isLightboxOpen && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center" onClick={() => setIsLightboxOpen(false)}>
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center overflow-hidden" onClick={() => setIsLightboxOpen(false)}>
           <div
             className="relative w-full h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
@@ -574,8 +581,8 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
             <img
               src={images[lightboxIndex]}
               alt={`${car.brand} ${car.model} zoom`}
-              className={`max-h-[85vh] w-auto object-contain select-none ${dragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-              style={{ transform: `translateX(${dragDeltaX}px)` }}
+              className={`max-h-[85vh] w-auto object-contain select-none ${dragging ? 'cursor-grabbing' : 'cursor-grab'} ${dragging ? '' : 'transition-transform duration-200 ease-out'}`}
+              style={{ transform: `translateX(${dragDeltaX}px)`, touchAction: (typeof window !== 'undefined' && window.innerWidth < 1024) ? 'none' : 'auto' }}
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
               onPointerDown={(e) => {
@@ -584,14 +591,34 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
               }}
               onPointerMove={(e) => {
                 if (!dragging || dragStartX === null) return;
-                setDragDeltaX(e.clientX - dragStartX);
+                const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+                const delta = e.clientX - dragStartX;
+                setDragDeltaX(isMobile ? delta * 1.15 : delta);
               }}
               onPointerUp={() => {
-                if (dragDeltaX > 50) setLightboxIndex((lightboxIndex - 1 + images.length) % images.length);
-                else if (dragDeltaX < -50) setLightboxIndex((lightboxIndex + 1) % images.length);
+                const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+                const threshold = isMobile ? 20 : 50;
+                if (dragDeltaX > threshold) {
+                  setLightboxIndex((lightboxIndex - 1 + images.length) % images.length);
+                  setDragDeltaX(0);
+                } else if (dragDeltaX < -threshold) {
+                  setLightboxIndex((lightboxIndex + 1) % images.length);
+                  setDragDeltaX(0);
+                } else {
+                  if (isMobile) {
+                    const sign = dragDeltaX === 0 ? 0 : (dragDeltaX > 0 ? 1 : -1);
+                    if (sign !== 0) {
+                      setDragDeltaX(sign * 15);
+                      setTimeout(() => setDragDeltaX(0), 120);
+                    } else {
+                      setDragDeltaX(0);
+                    }
+                  } else {
+                    setDragDeltaX(0);
+                  }
+                }
                 setDragging(false);
                 setDragStartX(null);
-                setDragDeltaX(0);
               }}
               onPointerCancel={() => {
                 setDragging(false);
