@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden">
+    <section className="relative text-white overflow-hidden min-h-[320px] md:min-h-[520px] lg:min-h-[640px]">
       <img
         src="/0.jpg"
         alt=""
@@ -10,7 +10,7 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-black/40"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 lg:py-32">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-24 lg:py-32">
         <div className="grid grid-cols-1 gap-8 md:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 text-center">
             <div className="space-y-3 md:space-y-4">
@@ -45,7 +45,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 md:pt-8 justify-items-center">
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 md:pt-8 justify-items-center">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
                 <span className="text-sm">Auto certificate</span>
@@ -61,6 +61,25 @@ export default function Hero() {
             </div>
           </div>
           
+        </div>
+      </div>
+
+      <div className="absolute bottom-4 inset-x-0 md:hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-items-center">
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
+              <span className="text-xs">Auto certificate</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
+              <span className="text-xs">Finanziamenti personalizzati</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
+              <span className="text-xs">Assistenza dedicata</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

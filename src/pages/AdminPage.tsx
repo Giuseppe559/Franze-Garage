@@ -29,6 +29,7 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
     emission_class: '' as string,
     doors: '' as string,
     description: '',
+    allestimento: '' as string,
     main_image: '',
     imagesText: '' as string,
     certified: false,
@@ -186,7 +187,8 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
       return;
     }
     const images = parseImages(newCar.imagesText);
-    const insertPayload: Partial<Car> = {
+    const featuresPayload = newCar.allestimento.trim() ? [`Allestimento: ${newCar.allestimento.trim()}`] : undefined;
+    const insertPayloadBase: Partial<Car> = {
       brand: newCar.brand,
       model: newCar.model,
       year: Number(newCar.year),
@@ -208,19 +210,33 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
       warranty: newCar.warranty,
       available: newCar.available,
     };
-    const { error } = await supabase.from('cars').insert(insertPayload);
+    const payloadWithFeatures = featuresPayload ? { ...insertPayloadBase, features: featuresPayload } : insertPayloadBase;
+    let { error } = await supabase.from('cars').insert(payloadWithFeatures);
+    if (error) {
+      const msg = error.message || '';
+      const featuresMissing = /column\s+"?features"?\s+does not exist|unknown column.*features|column not found.*features/i.test(msg);
+      if (featuresMissing && featuresPayload) {
+        const descWithAllestimento = `Allestimento: ${newCar.allestimento.trim()}\n${newCar.description}`.trim();
+        const payloadNoFeatures: Partial<Car> = { ...insertPayloadBase, description: descWithAllestimento };
+        const retry = await supabase.from('cars').insert(payloadNoFeatures);
+        error = retry.error ?? null;
+      }
+    }
     setLoading(false);
     if (error) {
       const msg = error.message || '';
       const needAuth = /permission|rls|unauthori|not allowed/i.test(msg);
       const notNull = /null value in column|violates not-null|not null/i.test(msg);
       const schemaCache = /could not find .* in the schema cache|schema cache/i.test(msg);
+      const featuresMissing = /column\s+"?features"?\s+does not exist|unknown column.*features|column not found.*features/i.test(msg);
       const final = needAuth
         ? 'Accesso non autorizzato: configura policy RLS per utenti autenticati'
         : notNull
         ? 'Campi obbligatori mancanti: assicurati di compilare prezzo e chilometraggio'
+        : featuresMissing
+        ? 'La colonna "features" non esiste: ho salvato l’allestimento dentro la descrizione'
         : schemaCache
-        ? 'Schema non aggiornato: esegui in Supabase SQL Editor → NOTIFY pgrst, "reload schema" e verifica che la colonna "brand" esista in public.cars'
+        ? 'Schema non aggiornato: esegui in Supabase SQL Editor → NOTIFY pgrst, "reload schema" e verifica le colonne della tabella public.cars'
         : `Errore durante la creazione dell'annuncio: ${msg}`;
       setError(final);
     } else {
@@ -241,6 +257,7 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
         emission_class: '',
         doors: '',
         description: '',
+        allestimento: '',
         main_image: '',
         imagesText: '',
         certified: false,
@@ -475,7 +492,14 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
               <label className="flex items-center space-x-2"><input type="checkbox" checked={newCar.available} onChange={(e) => setNewCar({ ...newCar, available: e.target.checked })} /><span>Disponibile</span></label>
             </div>
           </div>
-          <textarea className="px-4 py-3 border rounded-lg h-24 md:col-span-2" placeholder="Descrizione" value={newCar.description} onChange={(e) => setNewCar({ ...newCar, description: e.target.value })} onClick={selectAllOnQuadClick} />
+          <div className="md:col-span-2 space-y-1">
+            <label className="block text-sm font-semibold text-gray-700">Descrizione</label>
+            <textarea className="px-4 py-3 border rounded-lg h-24 w-full" placeholder="Inserisci descrizione veicolo" value={newCar.description} onChange={(e) => setNewCar({ ...newCar, description: e.target.value })} onClick={selectAllOnQuadClick} />
+          </div>
+          <div className="md:col-span-2 space-y-1">
+            <label className="block text-sm font-semibold text-gray-700">Allestimento</label>
+            <textarea className="px-4 py-3 border rounded-lg h-20 w-full" placeholder="Inserisci allestimento (es. pacchetti, finiture)" value={newCar.allestimento} onChange={(e) => setNewCar({ ...newCar, allestimento: e.target.value })} onClick={selectAllOnQuadClick} />
+          </div>
         </div>
         <div className="mt-6">
           <button onClick={handleCreate} disabled={loading || !(newCar.brand && newCar.model && newCar.price !== '' && newCar.mileage !== '')} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold">
@@ -529,7 +553,18 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
                     <input className="px-3 py-2 border rounded" defaultValue={car.price} type="number" onBlur={(e) => handleUpdate(car.id, { price: Number(e.target.value) })} />
                     <p className="text-xs text-gray-500">Prezzo in euro</p>
                   </div>
-                  <textarea className="px-3 py-2 border rounded w-full min-h-48" defaultValue={car.description || ''} placeholder="Descrizione" onBlur={(e) => handleUpdate(car.id, { description: e.target.value })} onClick={selectAllOnQuadClick} />
+                  <label className="block text-xs font-semibold text-gray-700 mb-1">Descrizione</label>
+                  <textarea className="px-3 py-2 border rounded w-full min-h-48" defaultValue={car.description || ''} placeholder="Inserisci descrizione veicolo" onBlur={(e) => handleUpdate(car.id, { description: e.target.value })} onClick={selectAllOnQuadClick} />
+                  <div className="space-y-1">
+                    <label className="block text-xs font-semibold text-gray-700">Allestimento</label>
+                    <input className="px-3 py-2 border rounded w-full" defaultValue={(car.features || []).find((s) => s.startsWith('Allestimento:'))?.replace(/^Allestimento:\s*/, '') || ''} placeholder="Inserisci allestimento" onBlur={(e) => {
+                      const val = e.target.value.trim();
+                      const others = (car.features || []).filter((s) => !s.startsWith('Allestimento:'));
+                      const next = val.length ? [ `Allestimento: ${val}`, ...others ] : others;
+                      handleUpdate(car.id, { features: next });
+                    }} />
+                    <p className="text-xs text-gray-500">Salvato in dotazioni come "Allestimento:"</p>
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <div

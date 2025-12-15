@@ -11,9 +11,9 @@ export default function Footer({ onNavigate }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <img
-              src="/88.jpg"
+              src="/pp.png"
               alt="Franzè Garage"
-              className="w-24 md:w-32 lg:w-40 h-auto mb-4 object-contain mx-auto md:mx-0 mix-blend-multiply opacity-90"
+              className="w-40 md:w-52 lg:w-64 h-auto mb-4 object-contain mx-auto md:mx-0"
             />
             <p className="text-gray-400 text-sm leading-relaxed">
               La tua concessionaria di fiducia. Selezioniamo con cura auto usate garantite per ogni tuo viaggio.

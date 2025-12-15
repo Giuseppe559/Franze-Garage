@@ -6,14 +6,20 @@ interface NavbarProps {
 }
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
+  const scrollTopMobile = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
   return (
+    <>
     <nav className="bg-gray-900 text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex items-center space-x-6">
+        <div className="flex justify-between items-center h-16 md:h-20">
+          <div className="flex items-center space-x-4 md:space-x-6">
             <button
-              onClick={() => onNavigate('home')}
-              className={`transition-colors hover:text-orange-500 ${
+              onClick={() => { onNavigate('home'); scrollTopMobile(); }}
+              className={`text-sm md:text-base transition-colors hover:text-orange-500 ${
                 currentPage === 'home' ? 'text-orange-500 font-semibold' : ''
               }`}
             >
@@ -30,23 +36,23 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   }, 300);
                 }
               }}
-              className="transition-colors hover:text-orange-500"
+              className="text-sm md:text-base transition-colors hover:text-orange-500"
             >
               Inventario Auto
             </button>
             <button
-              onClick={() => onNavigate('contact')}
-              className="transition-colors hover:text-orange-500"
+              onClick={() => { onNavigate('contact'); scrollTopMobile(); }}
+              className="text-sm md:text-base transition-colors hover:text-orange-500"
             >
               Contatti
             </button>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3 md:space-x-4">
             <a
               href="https://m.facebook.com/100090415548551/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center hover:text-orange-500 transition-colors"
+              className="flex items-center hover:text-orange-500 transition-colors"
               aria-label="Facebook"
             >
               <Facebook size={18} />
@@ -55,7 +61,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
               href="http://www.instagram.com/franzegarage/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center hover:text-orange-500 transition-colors"
+              className="flex items-center hover:text-orange-500 transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={18} />
@@ -80,5 +86,13 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         </div>
       </div>
     </nav>
+    <div className="fixed top-16 md:top-20 left-4 md:left-6 w-36 md:w-52 z-[60] pointer-events-none">
+      <img
+        src="/ww.PNG"
+        alt="Logo adesivo"
+        className="w-full h-auto"
+      />
+    </div>
+    </>
   );
 }

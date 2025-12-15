@@ -60,7 +60,18 @@ export default function FeaturedCars({ cars, onNavigate }: FeaturedCarsProps) {
                 </div>
 
                 <p className="text-gray-600 mb-4 line-clamp-2">
-                  {car.description}
+                  {(function () {
+                    const list = car.features || [];
+                    const found = list.find((s) => s.toLowerCase().startsWith('allestimento'));
+                    if (!found) {
+                      const desc = car.description || '';
+                      const match = desc.match(/(^|\n)\s*Allestimento\s*:\s*(.*)/i);
+                      return match ? match[2].trim() : desc;
+                    }
+                    const idx = found.indexOf(':');
+                    const value = idx >= 0 ? found.slice(idx + 1).trim() : found.replace(/allestimento/i, '').trim();
+                    return value || (car.description || '');
+                  })()}
                 </p>
 
                 <div className="flex items-center justify-between">

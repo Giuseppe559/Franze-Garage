@@ -24,6 +24,20 @@ export default function Homepage({ onNavigate }: HomepageProps) {
     fuelType: ''
   });
 
+  const getAllestimento = (car: Car) => {
+    const list = car.features || [];
+    const found = list.find((s) => s.toLowerCase().startsWith('allestimento'));
+    if (!found) {
+      const desc = car.description || '';
+      const match = desc.match(/(^|\n)\s*Allestimento\s*:\s*(.*)/i);
+      if (match) return match[2].trim();
+      return '';
+    }
+    const idx = found.indexOf(':');
+    if (idx >= 0) return found.slice(idx + 1).trim();
+    return found.replace(/allestimento/i, '').trim();
+  };
+
   const minPriceOptions = [1000, 5000, 10000, 20000, 30000, 40000, 50000, 75000, 100000];
   const maxPriceOptions = [5000, 10000, 20000, 30000, 40000, 50000, 75000, 100000, 150000];
   const yearOptions = Array.from({ length: 2026 - 1995 + 1 }, (_, i) => 2026 - i);
@@ -178,6 +192,13 @@ export default function Homepage({ onNavigate }: HomepageProps) {
     });
   };
 
+  const navigateTopMobile = (page: string, carId?: string) => {
+    onNavigate(page, carId);
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div>
       <Hero />
@@ -312,7 +333,7 @@ export default function Homepage({ onNavigate }: HomepageProps) {
                 <div
                   key={car.id}
                   className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all transform hover:-translate-y-2 cursor-pointer"
-                  onClick={() => onNavigate('detail', car.id)}
+                  onClick={() => navigateTopMobile('detail', car.id)}
                 >
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -348,7 +369,7 @@ export default function Homepage({ onNavigate }: HomepageProps) {
                     </div>
 
                     <p className="text-gray-600 mb-4 line-clamp-2">
-                      {car.description}
+                      {getAllestimento(car) || car.description || ''}
                     </p>
 
                     <div className="flex items-center justify-between">

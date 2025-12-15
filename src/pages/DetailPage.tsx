@@ -182,6 +182,25 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
           <p className="text-xl text-gray-300 mt-2">
             {car.fuel_type} • {car.transmission} • {car.mileage.toLocaleString()} km
           </p>
+          {(() => {
+            const list = car.features || [];
+            let value = '';
+            const found = list.find((s) => s.toLowerCase().startsWith('allestimento'));
+            if (found) {
+              const idx = found.indexOf(':');
+              value = idx >= 0 ? found.slice(idx + 1).trim() : found.replace(/allestimento/i, '').trim();
+            } else {
+              const desc = car.description || '';
+              const match = desc.match(/(^|\n)\s*Allestimento\s*:\s*(.*)/i);
+              if (match) value = match[2].trim();
+            }
+            if (!value) return null;
+            return (
+              <p className="text-base text-orange-400 mt-2 line-clamp-1">
+                {value}
+              </p>
+            );
+          })()}
         </div>
       </div>
 
@@ -382,7 +401,7 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
               </div>
             )}
 
-            <div className="bg-gray-900 text-white rounded-xl shadow-lg p-8">
+            <div className="hidden lg:block bg-gray-900 text-white rounded-xl shadow-lg p-8">
               <h2 className="text-2xl font-bold mb-6">Garanzia e Certificazioni</h2>
 
               <div className="space-y-4">
@@ -552,8 +571,32 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
                     <span>{isSubmitting ? 'Invio...' : 'Invia richiesta'}</span>
                     <Send size={20} />
                   </button>
+              </div>
+            </form>
+            </div>
+            <div className="lg:hidden bg-gray-900 text-white rounded-xl shadow-lg p-8 mt-6">
+              <h2 className="text-2xl font-bold mb-6">Garanzia e Certificazioni</h2>
+
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
+                  <span>Veicolo controllato e certificato</span>
                 </div>
-              </form>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
+                  <span>Cronologia manutenzioni verificabile</span>
+                </div>
+                {car.warranty && (
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
+                    <span>Garanzia inclusa</span>
+                  </div>
+                )}
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
+                  <span>Tagliando pre-consegna</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
