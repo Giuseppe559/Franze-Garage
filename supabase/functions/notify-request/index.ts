@@ -41,8 +41,8 @@ serve(async (req) => {
   const results: Record<string, unknown> = {};
 
   const resendKey = Deno.env.get("RESEND_API_KEY");
-  const resendFrom = Deno.env.get("RESEND_FROM");
-  const adminEmail = Deno.env.get("ADMIN_EMAIL");
+  const resendFrom = Deno.env.get("RESEND_FROM") ?? "franzegarage@gmail.com";
+  const adminEmail = Deno.env.get("ADMIN_EMAIL") ?? "franzegarage@gmail.com";
   if (resendKey && resendFrom && adminEmail) {
     try {
       const r = await fetch("https://api.resend.com/emails", {

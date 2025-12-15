@@ -80,8 +80,8 @@ export default function Footer({ onNavigate }: FooterProps) {
 
               <div className="flex items-center space-x-3">
                 <Mail size={20} className="text-orange-500 flex-shrink-0" />
-                <a href="mailto:info@franzegarage.it" className="text-sm text-gray-300 hover:text-orange-400 transition-colors">
-                  info@franzegarage.it
+                <a href="mailto:franzegarage@gmail.com" className="text-sm text-gray-300 hover:text-orange-400 transition-colors">
+                  franzegarage@gmail.com
                 </a>
               </div>
             </div>

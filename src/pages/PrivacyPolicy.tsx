@@ -14,7 +14,7 @@ export default function PrivacyPolicy() {
             Finalità: rispondere alle richieste, fornire preventivi, gestire appuntamenti, analisi funzionali del sito.
           </p>
           <p>
-            Diritti: accesso, rettifica, cancellazione, limitazione, opposizione, portabilità. Per esercitare i diritti: info@franzegarage.it.
+            Diritti: accesso, rettifica, cancellazione, limitazione, opposizione, portabilità. Per esercitare i diritti: franzegarage@gmail.com.
           </p>
           <p>
             Conservazione: limitata al tempo necessario alle finalità indicate e agli obblighi di legge.
@@ -24,4 +24,3 @@ export default function PrivacyPolicy() {
     </div>
   );
 }
-
