@@ -25,7 +25,9 @@ function App() {
     if (carId) {
       setSelectedCarId(carId);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Su mobile spesso smooth scroll non funziona bene se cambia il contenuto
+    // Usiamo scrollTo(0,0) immediato per garantire che torni su
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {

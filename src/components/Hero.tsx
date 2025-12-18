@@ -2,15 +2,18 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden min-h-[320px] md:min-h-[520px] lg:min-h-[640px]">
-      <img
-        src="/0.jpg"
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover blur-[2px]"
-      />
-      <div className="absolute inset-0 bg-black/40"></div>
+    <section className="relative text-white overflow-hidden flex flex-col md:block">
+      {/* Desktop Background */}
+      <div className="hidden md:block absolute inset-0">
+        <img
+          src="/0.jpg"
+          alt=""
+          className="w-full h-full object-cover blur-[2px]"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-24 lg:py-32">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-24 lg:py-32 bg-gray-900 md:bg-transparent w-full">
         <div className="grid grid-cols-1 gap-8 md:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 text-center">
             <div className="space-y-3 md:space-y-4">
@@ -64,7 +67,16 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 inset-x-0 md:hidden">
+      {/* Mobile Image - Below text, fully visible */}
+      <div className="md:hidden w-full bg-gray-900">
+        <img
+          src="/0.jpg"
+          alt="Franzè Garage"
+          className="w-full h-auto object-contain"
+        />
+      </div>
+
+      <div className="absolute bottom-4 inset-x-0 md:hidden hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 justify-items-center">
             <div className="flex items-center space-x-2">

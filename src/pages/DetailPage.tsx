@@ -384,23 +384,6 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
               </div>
             )}
 
-            {car.features && car.features.length > 0 && (
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Equipaggiamenti e Optional
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  {car.features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
             <div className="hidden lg:block bg-gray-900 text-white rounded-xl shadow-lg p-8">
               <h2 className="text-2xl font-bold mb-6">Garanzia e Certificazioni</h2>
 
@@ -428,7 +411,7 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-8 sticky top-20 sm:top-24 md:top-28 lg:top-28 h-[82vh] lg:h-[84vh] overflow-hidden flex flex-col">
+            <div className="bg-white rounded-xl shadow-lg p-8 lg:sticky lg:top-28 h-auto lg:h-[84vh] lg:overflow-hidden flex flex-col">
               <div className="mb-6">
                 <p className="text-sm text-gray-500 mb-2">Prezzo</p>
                 <p className="text-4xl font-bold text-orange-500">
@@ -452,7 +435,7 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
                   </button>
                 </div>
 
-                <div ref={formScrollRef} className="space-y-4 flex-1 min-h-0 overflow-y-auto pr-2 scrollbar-custom">
+                <div ref={formScrollRef} className="space-y-4 lg:flex-1 lg:min-h-0 lg:overflow-y-auto pr-2 scrollbar-custom">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
                       Nome *
