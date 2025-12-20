@@ -2,37 +2,30 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col md:block">
-      <div className="md:hidden absolute inset-0">
-        <img
-          src="/0.jpg"
-          alt=""
-          className="w-full h-full object-cover blur-[2px]"
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
-      <div className="hidden md:block absolute inset-0">
-        <img
-          src="/0.jpg"
-          alt=""
-          className="w-full h-full object-cover blur-[2px]"
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
+    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 lg:bg-gray-900">
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-24 lg:py-32 bg-transparent w-full">
         <div className="grid grid-cols-1 gap-8 md:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 text-center">
-            <div className="space-y-3 md:space-y-4">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                La Tua Prossima Auto È Qui.
-              </h1>
-              <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-orange-500">
-                Benvenuto da Franzè Garage.
-              </p>
-              <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
-                Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
-              </p>
+            <div className="relative overflow-hidden rounded-xl p-4 sm:p-6 lg:p-0">
+              <img
+                src="/0.jpg"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover blur-[2px] lg:hidden"
+              />
+              <div className="absolute inset-0 bg-black/40 lg:hidden"></div>
+              <div className="absolute inset-0 bg-orange-500/30 lg:hidden"></div>
+              <div className="relative space-y-3 md:space-y-4 text-center">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                  La Tua Prossima Auto È Qui.
+                </h1>
+                <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-orange-500">
+                  Benvenuto da Franzè Garage.
+                </p>
+                <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed">
+                  Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
@@ -49,7 +42,7 @@ export default function Hero() {
                 onClick={() => {
                   document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-5 py-3 md:px-8 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all"
+                className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 md:px-8 md:py-4 rounded-lg font-semibold text-base md:text-lg transition-all lg:bg-transparent lg:border-2 lg:border-white lg:hover:bg-white lg:hover:text-gray-900"
               >
                 Valuta la tua auto
               </button>

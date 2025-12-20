@@ -278,7 +278,13 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Cilindrata</p>
-                        <p className="font-semibold text-gray-900">{car.displacement.toLocaleString()} cc</p>
+                        <p className="font-semibold text-gray-900">
+                          {(() => {
+                            const v = car.displacement as unknown;
+                            const n = typeof v === 'number' ? v : Number(String(v).replace(/[^\d]/g, ''));
+                            return Number.isFinite(n) ? new Intl.NumberFormat('it-IT').format(n) : String(v);
+                          })()} cc
+                        </p>
                       </div>
                     </div>
                   )}

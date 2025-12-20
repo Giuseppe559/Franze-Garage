@@ -1,5 +1,5 @@
 import ContactForm from '../components/ContactForm';
-import { MapPin, Phone } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 interface ContactPageProps {
   onNavigate?: (page: string) => void;
@@ -37,22 +37,41 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 <Phone size={36} className="text-orange-500 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-semibold text-gray-900">Telefono</p>
-                  <a href="tel:+393295531339" className="text-sm text-gray-700 hover:text-orange-600">+39 329 5531 339</a>
+                  <a
+                    href="tel:+393295531339"
+                    target="_blank"
+                    className="text-sm text-gray-700 hover:text-orange-600"
+                  >
+                    +39 329 5531 339
+                  </a>
                 </div>
               </div>
-            </div>
-          </div>
+              
+              <div className="flex items-center space-x-4">
+                <Mail size={36} className="text-orange-500 flex-shrink-0" />
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">Email</p>
+                  <a
+                    href="mailto:franzegarage@gmail.com"
+                    className="text-sm text-gray-700 hover:text-orange-600"
+                  >
+                    franzegarage@gmail.com
+                  </a>
+                </div>
+              </div>
 
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <iframe
-              title="Mappa Franzè Garage"
-              src="https://www.google.com/maps?q=Via%20Prospero%20Rizzini%206%2FA%2C%20Cazzago%20San%20Martino%20(BS)&output=embed"
-              className="w-full h-[360px] md:h-[420px] lg:h-[500px]"
+              <div className="rounded-lg overflow-hidden">
+                <iframe
+                  title="Mappa Franzè Garage"
+                  src="https://www.google.com/maps?q=Via%20Prospero%20Rizzini%206%2FA%2C%20Cazzago%20San%20Martino%20(BS)&output=embed"
+                  className="w-full h-[360px] md:h-[420px] lg:h-[500px]"
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
             />
+          </div>
+          </div>
           </div>
         </div>
 

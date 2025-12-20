@@ -196,7 +196,7 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
       mileage: mileageVal,
       fuel_type: newCar.fuel_type,
       transmission: newCar.transmission,
-      displacement: newCar.displacement === '' ? undefined : Number(newCar.displacement),
+      displacement: newCar.displacement === '' ? undefined : Number(newCar.displacement.replace(/[^\d]/g, '')),
       power: newCar.power_cv === '' ? undefined : Number(newCar.power_cv),
       power_kw: newCar.power_kw === '' ? undefined : Number(newCar.power_kw),
       color: newCar.color || undefined,
@@ -394,7 +394,7 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
               <option>Automatico</option>
             </select>
             <div className="space-y-1">
-              <input type="number" className="px-4 py-3 border rounded-lg" placeholder="Cilindrata (cc)" value={newCar.displacement} onChange={(e) => setNewCar({ ...newCar, displacement: e.target.value })} />
+              <input type="text" inputMode="numeric" className="px-4 py-3 border rounded-lg" placeholder="Cilindrata (cc)" value={newCar.displacement} onChange={(e) => setNewCar({ ...newCar, displacement: e.target.value })} />
               <p className="text-sm text-gray-500">Cilindrata (cc)</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -574,6 +574,26 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
                   >
                     <UploadCloud className="inline-block text-orange-500" />
                     <span className="text-sm text-gray-600 ml-2">Trascina per sostituire foto principale</span>
+                    <div className="mt-2">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          if (!isLoggedIn) { setError('Devi accedere per caricare immagini'); return; }
+                          try {
+                            const url = await uploadFileToStorage(file, 'main');
+                            await handleUpdate(car.id, { main_image: url });
+                            setSuccess('Foto principale aggiornata');
+                          } catch (err) {
+                            const msg = err instanceof Error ? err.message : '';
+                            setError(`Errore caricamento foto principale${msg ? `: ${msg}` : ''}`);
+                          }
+                        }}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">Oppure scegli file dalla cartella</p>
+                    </div>
                   </div>
                   {car.main_image && (
                     <div className="mt-2 relative w-40">
@@ -606,6 +626,28 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
                   >
                     <Images className="inline-block text-orange-500" />
                     <span className="text-sm text-gray-600 ml-2">Trascina per aggiungere fotografie</span>
+                    <div className="mt-2">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        multiple
+                        onChange={async (e) => {
+                          const files = e.target.files;
+                          if (!files || files.length === 0) return;
+                          if (!isLoggedIn) { setError('Devi accedere per caricare immagini'); return; }
+                          try {
+                            const urls = await Promise.all(Array.from(files).map((f) => uploadFileToStorage(f, 'gallery')));
+                            const updated = [ ...(car.images || []), ...urls ];
+                            await handleUpdate(car.id, { images: updated });
+                            setSuccess('Fotografie aggiunte');
+                          } catch (err) {
+                            const msg = err instanceof Error ? err.message : '';
+                            setError(`Errore caricamento fotografie${msg ? `: ${msg}` : ''}`);
+                          }
+                        }}
+                      />
+                      <p className="text-xs text-gray-500 mt-1">Oppure scegli file dalla cartella</p>
+                    </div>
                   </div>
                   {(car.images || []).length > 0 && (
                     <div className="mt-2 grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -679,9 +721,10 @@ export default function AdminPage({ onNavigate }: AdminPageProps) {
                   <p className="text-xs text-gray-500">Cambio</p>
                 </div>
                 <div className="space-y-1">
-                  <input className="px-3 py-2 border rounded" type="number" defaultValue={car.displacement ?? ''} placeholder="Cilindrata (cc)" onBlur={(e) => {
+                  <input className="px-3 py-2 border rounded" type="text" inputMode="numeric" defaultValue={car.displacement ?? ''} placeholder="Cilindrata (cc)" onBlur={(e) => {
                     const v = e.target.value.trim();
-                    handleUpdate(car.id, { displacement: v === '' ? undefined : Number(v) });
+                    const num = v === '' ? undefined : Number(v.replace(/[^\d]/g, ''));
+                    handleUpdate(car.id, { displacement: num });
                   }} />
                   <p className="text-xs text-gray-500">Cilindrata (cc)</p>
                 </div>
