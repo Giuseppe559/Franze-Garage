@@ -25,7 +25,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="pt-10 sm:pt-10 md:pt-10 lg:pt-20 pb-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="items-center">
           <div className="space-y-6">

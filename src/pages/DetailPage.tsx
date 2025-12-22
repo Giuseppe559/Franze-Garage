@@ -77,6 +77,28 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
     return () => { document.body.style.overflow = ''; };
   }, [isLightboxOpen]);
 
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+      if (!isDesktop || !isLightboxOpen) return;
+      const len = (car?.images && car.images.length > 0) ? car.images.length : 1;
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setLightboxIndex((prev) => (prev - 1 + len) % len);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setLightboxIndex((prev) => (prev + 1) % len);
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        setIsLightboxOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => {
+      window.removeEventListener('keydown', handler);
+    };
+  }, [isLightboxOpen, car]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
