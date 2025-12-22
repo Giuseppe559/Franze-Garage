@@ -19,7 +19,7 @@ export default function Hero() {
               <img
                 src="/0.jpg"
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover blur-[2px] lg:hidden"
+                className="absolute inset-0 w-full h-full object-cover blur-[1px] lg:hidden"
               />
               <div className="relative space-y-3 md:space-y-4 text-center">
                 <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">

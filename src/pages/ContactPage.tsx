@@ -15,7 +15,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
           </div>
         )}
 
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid lg:grid-cols-2 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
@@ -60,7 +60,7 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
                 </div>
               </div>
 
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-lg overflow-hidden lg:hidden">
                 <iframe
                   title="Mappa Franzè Garage"
                   src="https://www.google.com/maps?q=Via%20Prospero%20Rizzini%206%2FA%2C%20Cazzago%20San%20Martino%20(BS)&output=embed"
@@ -72,6 +72,20 @@ export default function ContactPage({ onNavigate }: ContactPageProps) {
             />
           </div>
           </div>
+          </div>
+          
+          <div className="hidden lg:block bg-white rounded-xl shadow-lg p-6">
+            <div className="rounded-lg overflow-hidden">
+              <iframe
+                title="Mappa Franzè Garage"
+                src="https://www.google.com/maps?q=Via%20Prospero%20Rizzini%206%2FA%2C%20Cazzago%20San%20Martino%20(BS)&output=embed"
+                className="w-full h-[500px]"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
           </div>
         </div>
 

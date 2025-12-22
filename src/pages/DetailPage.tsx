@@ -21,6 +21,7 @@ interface DetailPageProps {
 }
 
 export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
+  type NotifyResp = { emailSent?: boolean; whatsappSent?: boolean };
   const [car, setCar] = useState<Car | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
@@ -81,35 +82,27 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setDbError(null);
-    const text = `Nuova richiesta\nNome: ${formData.name}\nTelefono: ${formData.phone}\nEmail: ${formData.email || '-'}\nAuto: ${formData.car_interest || (car ? `${car.brand} ${car.model} - ${car.year}` : '-') }\nTipo: ${formData.request_type || '-'}\nMessaggio: ${formData.message || '-'}`;
-    const waNumber = '393295531339';
-    const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`;
-    const mailSubject = 'Nuova richiesta Franzè Garage';
-    const mailtoUrl = `mailto:franzegarage@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(text)}`;
+    
 
     try {
-      const { error } = await supabase
-        .from('contact_requests')
-        .insert([formData]);
-
-      if (error) {
-        const msg = error.message || 'Archivio non disponibile';
-        setDbError(msg);
-        setSubmitStatus('error');
-        if (typeof window !== 'undefined') {
-          window.open(waUrl, '_blank');
-          window.open(mailtoUrl, '_blank');
-        }
+      const { data: notifyData, error: notifyErr } = await supabase.functions.invoke('notify-request', { body: { formData } });
+      const notifyResp = (notifyData as NotifyResp) ?? {};
+      const emailOk = notifyResp.emailSent === true;
+      const waOk = notifyResp.whatsappSent === true;
+      if (notifyErr) {
+        setDbError(notifyErr.message || 'Notifica non inviata');
       }
 
-      if (!error) {
-        setSubmitStatus('success');
+      const { error: saveErr } = await supabase.from('contact_requests').insert([formData]);
+      if (saveErr) {
+        setDbError(saveErr.message || 'Archivio non disponibile');
+      }
+
+      const success = emailOk || waOk;
+      setSubmitStatus(success ? 'success' : 'error');
+      if (success) {
         if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', { source: 'detail_form', car: car ? `${car.brand} ${car.model}` : '' });
-        }
-        if (typeof window !== 'undefined') {
-          window.open(waUrl, '_blank');
-          window.open(mailtoUrl, '_blank');
         }
         setFormData({
           name: '',
@@ -125,10 +118,6 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
       const msg = err?.message || 'Errore imprevisto';
       setDbError(msg);
       setSubmitStatus('error');
-      if (typeof window !== 'undefined') {
-        window.open(waUrl, '_blank');
-        window.open(mailtoUrl, '_blank');
-      }
     } finally {
       setIsSubmitting(false);
     }
@@ -196,7 +185,7 @@ export default function DetailPage({ carId, onNavigate }: DetailPageProps) {
             }
             if (!value) return null;
             return (
-              <p className="text-base text-orange-400 mt-2 line-clamp-1">
+              <p className="text-2xl text-orange-400 mt-2 line-clamp-1">
                 {value}
               </p>
             );

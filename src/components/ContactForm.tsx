@@ -8,6 +8,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ compact = false, hideHeader = false }: ContactFormProps) {
+  type NotifyResp = { emailSent?: boolean; whatsappSent?: boolean };
   const [formData, setFormData] = useState<ContactRequest>({
     name: '',
     phone: '',
@@ -29,26 +30,27 @@ export default function ContactForm({ compact = false, hideHeader = false }: Con
     setNotifyError(null);
 
     try {
-      const { error } = await supabase
-        .from('contact_requests')
-        .insert([formData]);
-
-      if (error) {
-        const msg = error.message || 'Archivio non disponibile';
-        setDbError(msg);
-        setSubmitStatus('error');
+      const { data: notifyData, error: notifyErr } = await supabase.functions.invoke('notify-request', { body: { formData } });
+      const notifyResp = (notifyData as NotifyResp) ?? {};
+      const emailOk = notifyResp.emailSent === true;
+      const waOk = notifyResp.whatsappSent === true;
+      if (notifyErr || (!emailOk && !waOk)) {
+        setNotifyError((notifyErr && (notifyErr.message || 'Notifica non inviata')) || 'Notifica non inviata');
+      } else {
+        setNotifyError(null);
       }
 
-      if (!error) {
-        setSubmitStatus('success');
+      const { error: saveErr } = await supabase.from('contact_requests').insert([formData]);
+      if (saveErr) {
+        const msg = saveErr.message || 'Archivio non disponibile';
+        setDbError(msg);
+      }
+
+      const success = emailOk || waOk;
+      setSubmitStatus(success ? 'success' : 'error');
+      if (success) {
         if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
           window.gtag('event', 'generate_lead', { source: 'contact_form' });
-        }
-        const { data: notifyData, error: notifyErr } = await supabase.functions.invoke('notify-request', { body: { formData } });
-        if (notifyErr) {
-          setNotifyError(notifyErr.message || 'Notifica non inviata');
-        } else if (notifyData && (!notifyData.emailSent && !notifyData.whatsappSent)) {
-          setNotifyError('Notifica non inviata');
         }
         setFormData({
           name: '',
@@ -64,12 +66,6 @@ export default function ContactForm({ compact = false, hideHeader = false }: Con
       const msg = err?.message || 'Errore imprevisto';
       setDbError(msg);
       setSubmitStatus('error');
-      const { data: notifyData, error: notifyErr } = await supabase.functions.invoke('notify-request', { body: { formData } });
-      if (notifyErr) {
-        setNotifyError(notifyErr.message || 'Notifica non inviata');
-      } else if (notifyData && (!notifyData.emailSent && !notifyData.whatsappSent)) {
-        setNotifyError('Notifica non inviata');
-      }
     } finally {
       setIsSubmitting(false);
     }

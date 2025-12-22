@@ -86,7 +86,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         </div>
       </div>
     </nav>
-    <div className={`fixed top-16 md:top-20 w-36 md:w-52 z-[60] pointer-events-none ${
+    <div className={`fixed top-14 md:top-18 w-36 md:w-52 z-[60] pointer-events-none ${
       currentPage === 'detail' ? 'right-4 md:right-6' : 'left-4 md:left-6'
     }`}>
       <img

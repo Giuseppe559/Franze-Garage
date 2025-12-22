@@ -30,27 +30,7 @@ export default function AboutSection() {
         <div className="items-center">
           <div className="space-y-6">
             <div className="space-y-4 text-center">
-              {/* Sezione visibile solo su mobile/tablet, spostata qui come richiesto */}
-              <div className="md:hidden grid grid-cols-1 gap-3 justify-items-center mb-6">
-                <div className="flex items-center space-x-2">
-                  <div className="text-orange-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">Auto certificate</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="text-orange-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">Finanziamenti personalizzati</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="text-orange-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">Assistenza dedicata</span>
-                </div>
-              </div>
+              
 
               <h2 className="text-4xl font-bold text-gray-900">
                 Franzè Garage: la tua concessionaria di fiducia

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Hero from '../components/Hero';
 import AboutSection from '../components/AboutSection';
-import { Search, Calendar, Fuel, Gauge, ArrowRight } from 'lucide-react';
+import { Search, Calendar, Fuel, Gauge, ArrowRight, CheckCircle } from 'lucide-react';
 import ServicesSection from '../components/ServicesSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import ContactForm from '../components/ContactForm';
@@ -203,6 +203,24 @@ export default function Homepage({ onNavigate }: HomepageProps) {
     <div>
       <div className="md:hidden bg-gray-900 h-10 w-full"></div>
       <Hero />
+      <div className="md:hidden bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center">
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
+              <span className="text-sm font-medium text-gray-700">Auto certificate</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
+              <span className="text-sm font-medium text-gray-700">Finanziamenti personalizzati</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />
+              <span className="text-sm font-medium text-gray-700">Assistenza dedicata</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <AboutSection />
       <section id="home-inventory" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
