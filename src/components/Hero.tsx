@@ -2,24 +2,17 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 lg:bg-gray-900 lg:min-h-[720px]">
-      <div className="hidden lg:block absolute inset-0">
-        <img
-          src="/0.jpg"
-          alt=""
-          className="w-full h-full object-cover lg:transform lg:scale-90"
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
+    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 lg:bg-gray-900 lg:bg-[url('/0.jpg')] lg:bg-cover lg:bg-top lg:bg-fixed lg:min-h-[720px]">
+      <div className="hidden lg:block absolute inset-0 bg-black/40 z-0"></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-16 lg:py-36 bg-transparent w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-16 lg:pt-56 lg:pb-36 bg-transparent w-full">
         <div className="grid grid-cols-1 gap-4 md:gap-10 lg:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 lg:space-y-10 text-center">
             <div className="relative overflow-hidden rounded-xl p-3 sm:p-4 lg:p-0">
               <img
                 src="/0.jpg"
                 alt=""
-                className="absolute inset-0 w-full h-full object-cover blur-[1px] lg:hidden"
+                className="absolute inset-0 w-full h-full object-cover blur-none lg:hidden"
               />
               <div className="relative space-y-3 md:space-y-4 text-center">
                 <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
