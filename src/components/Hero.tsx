@@ -2,19 +2,25 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 lg:bg-gray-900">
+    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 lg:bg-gray-900 lg:min-h-[720px]">
+      <div className="hidden lg:block absolute inset-0">
+        <img
+          src="/0.jpg"
+          alt=""
+          className="w-full h-full object-cover lg:transform lg:scale-90"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-24 lg:py-32 bg-transparent w-full">
-        <div className="grid grid-cols-1 gap-8 md:gap-12 items-center justify-items-center">
-          <div className="space-y-6 md:space-y-8 text-center">
-            <div className="relative overflow-hidden rounded-xl p-4 sm:p-6 lg:p-0">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-16 lg:py-36 bg-transparent w-full">
+        <div className="grid grid-cols-1 gap-4 md:gap-10 lg:gap-12 items-center justify-items-center">
+          <div className="space-y-6 md:space-y-8 lg:space-y-10 text-center">
+            <div className="relative overflow-hidden rounded-xl p-3 sm:p-4 lg:p-0">
               <img
                 src="/0.jpg"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover blur-[2px] lg:hidden"
               />
-              <div className="absolute inset-0 bg-black/40 lg:hidden"></div>
-              <div className="absolute inset-0 bg-orange-500/30 lg:hidden"></div>
               <div className="relative space-y-3 md:space-y-4 text-center">
                 <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight">
                   La Tua Prossima Auto È Qui.
@@ -48,18 +54,18 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 md:pt-8 justify-items-center">
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 pt-6 md:pt-8 lg:pt-12 justify-items-center">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
-                <span className="text-sm">Auto certificate</span>
+                <span className="text-base lg:text-lg">Auto certificate</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
-                <span className="text-sm">Finanziamenti personalizzati</span>
+                <span className="text-base lg:text-lg">Finanziamenti personalizzati</span>
               </div>
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
-                <span className="text-sm">Assistenza dedicata</span>
+                <span className="text-base lg:text-lg">Assistenza dedicata</span>
               </div>
             </div>
           </div>

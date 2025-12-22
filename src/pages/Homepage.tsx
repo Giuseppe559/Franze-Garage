@@ -201,7 +201,7 @@ export default function Homepage({ onNavigate }: HomepageProps) {
 
   return (
     <div>
-      <div className="md:hidden bg-white h-16 w-full"></div>
+      <div className="md:hidden bg-gray-900 h-10 w-full"></div>
       <Hero />
       <AboutSection />
       <section id="home-inventory" className="py-16">
