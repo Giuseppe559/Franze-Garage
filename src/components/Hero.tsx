@@ -2,9 +2,9 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 bg-[url('/0.jpg')] bg-center bg-no-repeat bg-cover lg:bg-[url('/0.jpg')] lg:bg-cover lg:bg-top lg:bg-fixed min-h-[70vh] lg:min-h-[720px]">
+    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 bg-[url('/0.jpg')] bg-[position:50%_28%] md:bg-[position:50%_22%] bg-no-repeat bg-[length:210%_auto] md:bg-[length:210%_auto] lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[70vh] lg:min-h-[720px]">
       <div className="hidden lg:block absolute inset-0 bg-black/25 z-0"></div>
-      <div className="lg:hidden absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/10 z-0"></div>
+      <div className="lg:hidden absolute inset-0 bg-transparent z-0"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 md:pt-16 md:pb-12 lg:pt-40 lg:pb-36 bg-transparent w-full">
         <div className="grid grid-cols-1 gap-4 md:gap-10 lg:gap-12 items-center justify-items-center">
