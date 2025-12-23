@@ -203,8 +203,8 @@ export default function Homepage({ onNavigate }: HomepageProps) {
     <div>
       <div className="md:hidden bg-gray-900 h-10 w-full"></div>
       <Hero />
-      <div className="md:hidden bg-white">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="md:hidden bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 pt-0 pb-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center">
             <div className="flex items-center space-x-2">
               <CheckCircle className="text-orange-500 flex-shrink-0" size={20} />

@@ -2,11 +2,11 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 bg-[url('/0.jpg')] bg-[position:50%_28%] md:bg-[position:50%_22%] bg-no-repeat bg-[length:210%_auto] md:bg-[length:210%_auto] lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[70vh] lg:min-h-[720px]">
+    <section className="relative text-white overflow-hidden flex flex-col md:block bg-transparent md:bg-transparent lg:bg-gray-900 bg-[url('/0.jpg')] bg-[position:50%_0%] md:bg-[position:50%_0%] bg-no-repeat bg-[length:220%_auto] md:bg-[length:220%_auto] lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[60vh] md:min-h-[64vh] lg:min-h-[720px]">
       <div className="hidden lg:block absolute inset-0 bg-black/25 z-0"></div>
       <div className="lg:hidden absolute inset-0 bg-transparent z-0"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8 md:pt-16 md:pb-12 lg:pt-40 lg:pb-36 bg-transparent w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-0 md:pt-28 md:pb-2 lg:pt-40 lg:pb-36 bg-transparent w-full">
         <div className="grid grid-cols-1 gap-4 md:gap-10 lg:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 lg:space-y-10 text-center">
             <div className="relative lg:hidden px-6 sm:px-8 py-12 sm:py-16 flex flex-col items-center justify-center text-center">
@@ -21,7 +21,7 @@ export default function Hero() {
                   Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
                 </p>
               </div>
-              <div className="max-w-md w-full grid grid-cols-1 sm:grid-cols-2 gap-3 mt-10">
+              <div className="max-w-md w-full grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 md:mt-2">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
