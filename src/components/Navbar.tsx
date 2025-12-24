@@ -7,7 +7,7 @@ interface NavbarProps {
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const scrollTopMobile = () => {
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };

@@ -19,7 +19,7 @@ export default function FeaturedCars({ cars, onNavigate }: FeaturedCarsProps) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {cars.slice(0, 3).map((car) => (
             <div
               key={car.id}
