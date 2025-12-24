@@ -33,7 +33,7 @@ export default function ServicesSection() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-1 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
