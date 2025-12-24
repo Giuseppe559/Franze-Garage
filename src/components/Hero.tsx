@@ -2,31 +2,37 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col md:block bg-transparent md:bg-transparent lg:bg-gray-900 bg-[url('/0.jpg')] bg-[position:50%_0%] md:bg-[position:50%_0%] bg-no-repeat bg-[length:220%_auto] md:bg-[length:220%_auto] lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[60vh] md:min-h-[64vh] lg:min-h-[720px]">
+    <section className="relative text-white overflow-hidden flex flex-col md:block bg-gray-900 md:bg-gray-900 lg:bg-gray-900 lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[60vh] md:min-h-[64vh] lg:min-h-[720px]">
       <div className="hidden lg:block absolute inset-0 bg-black/25 z-0"></div>
       <div className="lg:hidden absolute inset-0 bg-transparent z-0"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-0 md:pt-20 md:pb-2 lg:pt-40 lg:pb-36 bg-transparent w-full">
         <div className="grid grid-cols-1 gap-4 md:gap-10 lg:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 lg:space-y-10 text-center">
-            <div className="relative lg:hidden px-6 sm:px-8 py-4 sm:py-6 flex flex-col items-center justify-center text-center">
-              <div className="max-w-md w-full rounded-2xl bg-transparent shadow-2xl px-6 py-7 space-y-4">
-                <h1 className="text-3xl sm:text-4xl font-bold leading-tight text-white">
-                  La Tua Prossima Auto È Qui.
-                </h1>
-                <p className="text-2xl sm:text-3xl font-bold text-orange-500">
-                  Benvenuto da Franzè Garage.
-                </p>
-                <p className="text-base sm:text-lg text-gray-200 leading-relaxed">
-                  Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
-                </p>
+            <div className="relative md:hidden px-4 pt-10 pb-12 flex flex-col items-center text-center">
+              <div className="relative mb-6">
+                <div className="absolute inset-0 -z-10 w-56 h-56 mx-auto rounded-full bg-orange-500/20 blur-3xl"></div>
+                <img
+                  src="/0.jpg"
+                  alt="Franzè Garage"
+                  className="w-44 h-44 sm:w-52 sm:h-52 rounded-full object-cover shadow-xl ring-4 ring-orange-500/30"
+                />
               </div>
-              <div className="max-w-md w-full grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 md:mt-2">
+              <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+                La Tua Prossima Auto È Qui.
+              </h1>
+              <p className="text-xl sm:text-2xl font-bold text-orange-500 mt-1">
+                Benvenuto da Franzè Garage.
+              </p>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed mt-3 max-w-md">
+                Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
+              </p>
+              <div className="w-full max-w-sm mt-6 space-y-3">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl font-semibold text-base transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold text-base transition-all transform hover:scale-[1.02] flex items-center justify-center space-x-2"
                 >
                   <span>Scopri le nostre auto</span>
                   <ArrowRight size={20} />
@@ -35,10 +41,53 @@ export default function Hero() {
                   onClick={() => {
                     document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full bg-white/0 hover:bg-white/10 text-white px-5 py-3 rounded-xl font-semibold text-base transition-all border border-white/40"
+                  className="w-full bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-full font-semibold text-base transition-all"
                 >
                   Valuta la tua auto
                 </button>
+              </div>
+            </div>
+
+            <div className="hidden md:grid lg:hidden grid-cols-12 gap-8 items-center px-6 md:pt-10 md:pb-12">
+              <div className="col-span-6">
+                <div className="relative">
+                  <div className="absolute inset-0 -z-10 rounded-3xl bg-orange-500/20 blur-3xl"></div>
+                  <img
+                    src="/0.jpg"
+                    alt="Franzè Garage"
+                    className="w-full rounded-3xl shadow-2xl"
+                  />
+                </div>
+              </div>
+              <div className="col-span-6">
+                <h1 className="text-3xl md:text-4xl font-bold leading-tight">
+                  La Tua Prossima Auto È Qui.
+                </h1>
+                <p className="text-2xl md:text-3xl font-bold text-orange-500 mt-1">
+                  Benvenuto da Franzè Garage.
+                </p>
+                <p className="text-base md:text-lg text-gray-200 leading-relaxed mt-3">
+                  Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
+                </p>
+                <div className="mt-5 grid grid-cols-1 gap-3 max-w-md">
+                  <button
+                    onClick={() => {
+                      document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold text-base transition-all transform hover:scale-[1.02] flex items-center justify-center space-x-2"
+                  >
+                    <span>Scopri le nostre auto</span>
+                    <ArrowRight size={20} />
+                  </button>
+                  <button
+                    onClick={() => {
+                      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-full font-semibold text-base transition-all"
+                  >
+                    Valuta la tua auto
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -76,7 +125,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 pt-2 md:pt-4 lg:pt-12 justify-items-center">
+            <div className="hidden lg:grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8 mt-28 lg:mt-40 justify-items-center">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
                 <span className="text-base lg:text-lg">Auto certificate</span>
