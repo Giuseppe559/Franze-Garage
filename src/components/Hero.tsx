@@ -3,9 +3,8 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 export default function Hero() {
   return (
     <section className="relative text-white overflow-hidden flex flex-col lg:block bg-gray-900 lg:bg-gray-900 lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[90vh] lg:min-h-[720px]">
-      <div className="absolute inset-0 bg-black/40 z-0"></div>
+      <div className="hidden lg:block absolute inset-0 bg-black/25 z-0"></div>
       
-      {/* Immagine di sfondo per mobile e tablet */}
       <div className="absolute inset-0 z-0 lg:hidden">
         <img 
           src="/0.jpg" 
@@ -15,21 +14,19 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-gray-900/90"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-0 lg:pt-40 lg:pb-36 bg-transparent w-full h-full flex flex-col justify-center lg:block min-h-[90vh] lg:min-h-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-0 lg:pt-40 lg:pb-36 bg-transparent w-full h-full flex flex-col justify-start lg:block min-h-[90vh] lg:min-h-0">
         <div className="grid grid-cols-1 gap-4 lg:gap-12 items-center justify-items-center h-full">
           <div className="space-y-6 lg:space-y-10 text-center w-full">
-            
-            {/* Mobile/Tablet View (Design Moderno) */}
-            <div className="lg:hidden flex flex-col items-center text-center justify-center h-full pt-20 pb-10">
+            <div className="lg:hidden flex flex-col items-center text-center justify-start h-full pt-4 pb-4">
               <h1 className="text-4xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2">
                 La Tua Prossima<br />
                 <span className="text-orange-500">Auto È Qui.</span>
               </h1>
-              <p className="text-lg font-medium text-gray-200 drop-shadow-md mb-8 max-w-xs">
+              <p className="text-lg font-medium text-gray-200 drop-shadow-md -mt-4 mb-6 max-w-xs">
                 Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
               </p>
               
-              <div className="w-full max-w-sm space-y-4">
+              <div className="w-full max-w-sm space-y-4 mt-36 md:mt-48">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
@@ -47,49 +44,6 @@ export default function Hero() {
                 >
                   Valuta la tua auto
                 </button>
-              </div>
-            </div>
-
-            <div className="hidden lg:grid grid-cols-12 gap-8 items-center px-6 lg:pt-10 lg:pb-12">
-              <div className="col-span-6">
-                <div className="relative">
-                  <div className="absolute inset-0 -z-10 rounded-3xl bg-orange-500/20 blur-3xl"></div>
-                  <img
-                    src="/0.jpg"
-                    alt="Franzè Garage"
-                    className="w-full rounded-3xl shadow-2xl"
-                  />
-                </div>
-              </div>
-              <div className="col-span-6">
-                <h1 className="text-3xl md:text-4xl font-bold leading-tight">
-                  La Tua Prossima Auto È Qui.
-                </h1>
-                <p className="text-2xl md:text-3xl font-bold text-orange-500 mt-1">
-                  Benvenuto da Franzè Garage.
-                </p>
-                <p className="text-base md:text-lg text-gray-200 leading-relaxed mt-3">
-                  Selezioniamo con cura auto usate garantite. Trasparenza, sicurezza e professionalità per ogni tuo viaggio.
-                </p>
-                <div className="mt-5 grid grid-cols-1 gap-3 max-w-md">
-                  <button
-                    onClick={() => {
-                      document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold text-base transition-all transform hover:scale-[1.02] flex items-center justify-center space-x-2"
-                  >
-                    <span>Scopri le nostre auto</span>
-                    <ArrowRight size={20} />
-                  </button>
-                  <button
-                    onClick={() => {
-                      document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="bg-white hover:bg-gray-100 text-gray-900 px-6 py-3 rounded-full font-semibold text-base transition-all"
-                  >
-                    Valuta la tua auto
-                  </button>
-                </div>
               </div>
             </div>
 
