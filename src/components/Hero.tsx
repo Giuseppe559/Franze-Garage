@@ -76,7 +76,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 pt-6 md:pt-8 lg:pt-12 justify-items-center">
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 pt-10 md:pt-20 lg:pt-12 justify-items-center">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
                 <span className="text-base lg:text-lg">Auto certificate</span>
