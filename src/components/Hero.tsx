@@ -6,10 +6,10 @@ export default function Hero() {
       <div className="hidden lg:block absolute inset-0 bg-black/25 z-0"></div>
       <div className="lg:hidden absolute inset-0 bg-transparent z-0"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-0 md:pt-28 md:pb-2 lg:pt-40 lg:pb-36 bg-transparent w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-0 md:pt-20 md:pb-2 lg:pt-40 lg:pb-36 bg-transparent w-full">
         <div className="grid grid-cols-1 gap-4 md:gap-10 lg:gap-12 items-center justify-items-center">
           <div className="space-y-6 md:space-y-8 lg:space-y-10 text-center">
-            <div className="relative lg:hidden px-6 sm:px-8 py-12 sm:py-16 flex flex-col items-center justify-center text-center">
+            <div className="relative lg:hidden px-6 sm:px-8 py-4 sm:py-6 flex flex-col items-center justify-center text-center">
               <div className="max-w-md w-full rounded-2xl bg-transparent shadow-2xl px-6 py-7 space-y-4">
                 <h1 className="text-3xl sm:text-4xl font-bold leading-tight text-white">
                   La Tua Prossima Auto È Qui.
@@ -76,7 +76,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 pt-10 md:pt-20 lg:pt-12 justify-items-center">
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-8 pt-2 md:pt-4 lg:pt-12 justify-items-center">
               <div className="flex items-center space-x-3">
                 <CheckCircle className="text-orange-500 flex-shrink-0" size={24} />
                 <span className="text-base lg:text-lg">Auto certificate</span>
