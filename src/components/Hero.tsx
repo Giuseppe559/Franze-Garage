@@ -18,7 +18,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 gap-4 lg:gap-12 items-center justify-items-center h-full">
           <div className="space-y-6 lg:space-y-10 text-center w-full">
             <div className="lg:hidden flex flex-col items-center text-center justify-start h-full pt-0 pb-0 mt-0">
-              <h1 className="text-3xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2">
+              <h1 className="text-3xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2 mt-6">
                 La Tua Prossima<br />
                 <span className="text-orange-500">Auto È Qui.</span>
               </h1>
@@ -26,7 +26,7 @@ export default function Hero() {
                 Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
               </p>
               
-              <div className="w-full max-w-sm space-y-3 mt-48 md:mt-64">
+              <div className="w-full max-w-sm space-y-3 mt-[12.75rem] md:mt-64">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
