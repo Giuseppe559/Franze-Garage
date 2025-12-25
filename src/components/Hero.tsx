@@ -9,9 +9,10 @@ export default function Hero() {
         <img 
           src="/0.jpg" 
           alt="Background" 
-          className="w-full h-full object-cover object-[center_20%] md:object-cover md:object-center opacity-80"
+          className="w-full h-full object-cover object-[center_8%] md:object-cover md:object-center opacity-80"
         />
         <div className="absolute inset-x-0 top-0 h-1/6 md:h-full bg-gradient-to-b from-black/20 via-black/30 to-gray-900/70"></div>
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-gray-900/90 via-black/50 to-transparent"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 lg:pt-40 lg:pb-36 bg-transparent w-full h-full flex flex-col justify-start lg:block min-h-[90vh] lg:min-h-0">
@@ -26,7 +27,7 @@ export default function Hero() {
                 Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
               </p>
               
-              <div className="w-full max-w-sm space-y-3 mt-[12.75rem] md:mt-64">
+              <div className="w-full max-w-sm space-y-3 mt-56 md:mt-64">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
