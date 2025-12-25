@@ -9,29 +9,29 @@ export default function Hero() {
         <img 
           src="/0.jpg" 
           alt="Background" 
-          className="w-full h-full object-contain md:object-cover object-center opacity-60"
+          className="w-full h-full object-contain md:object-cover object-center opacity-80 scale-125 md:scale-100"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-gray-900/90"></div>
+        <div className="absolute inset-x-0 top-0 h-1/6 md:h-full bg-gradient-to-b from-black/20 via-black/30 to-gray-900/70"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-0 lg:pt-40 lg:pb-36 bg-transparent w-full h-full flex flex-col justify-start lg:block min-h-[90vh] lg:min-h-0">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 lg:pt-40 lg:pb-36 bg-transparent w-full h-full flex flex-col justify-start lg:block min-h-[90vh] lg:min-h-0">
         <div className="grid grid-cols-1 gap-4 lg:gap-12 items-center justify-items-center h-full">
           <div className="space-y-6 lg:space-y-10 text-center w-full">
-            <div className="lg:hidden flex flex-col items-center text-center justify-start h-full pt-4 pb-4">
-              <h1 className="text-4xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2">
+            <div className="lg:hidden flex flex-col items-center text-center justify-start h-full pt-0 pb-0 mt-0">
+              <h1 className="text-3xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2">
                 La Tua Prossima<br />
                 <span className="text-orange-500">Auto È Qui.</span>
               </h1>
-              <p className="text-lg font-medium text-gray-200 drop-shadow-md -mt-4 mb-6 max-w-xs">
+              <p className="text-base font-medium text-gray-200 drop-shadow-md mt-2 mb-5 max-w-xs">
                 Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
               </p>
               
-              <div className="w-full max-w-sm space-y-4 mt-72 md:mt-64">
+              <div className="w-full max-w-sm space-y-3 mt-48 md:mt-64">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-4 rounded-xl font-bold text-lg shadow-lg shadow-orange-500/30 transition-all active:scale-95 flex items-center justify-center space-x-2"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-4 rounded-xl font-bold text-base shadow-lg shadow-orange-500/30 transition-all active:scale-95 flex items-center justify-center space-x-2"
                 >
                   <span>Scopri le nostre auto</span>
                   <ArrowRight size={22} />
@@ -40,7 +40,7 @@ export default function Hero() {
                   onClick={() => {
                     document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="w-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 px-6 py-4 rounded-xl font-bold text-lg transition-all active:scale-95"
+                  className="w-full bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white/20 px-6 py-4 rounded-xl font-bold text-base transition-all active:scale-95"
                 >
                   Valuta la tua auto
                 </button>
