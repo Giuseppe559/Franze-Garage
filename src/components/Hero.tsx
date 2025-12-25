@@ -9,7 +9,7 @@ export default function Hero() {
         <img 
           src="/0.jpg" 
           alt="Background" 
-          className="w-full h-full object-cover object-[center_8%] md:object-cover md:object-center opacity-80"
+          className="w-full h-full object-cover object-[center_8%] md:object-cover md:object-center opacity-80 scale-[1.2] md:scale-100"
         />
         <div className="absolute inset-x-0 top-0 h-1/6 md:h-full bg-gradient-to-b from-black/20 via-black/30 to-gray-900/70"></div>
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-gray-900/90 via-black/50 to-transparent"></div>
