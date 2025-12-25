@@ -2,14 +2,14 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative text-white overflow-hidden flex flex-col lg:block bg-gray-900 lg:bg-gray-900 lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[90vh] lg:min-h-[720px]">
+    <section className="relative text-white overflow-hidden flex flex-col lg:block bg-gray-900 lg:bg-gray-900 lg:bg-[url('/0.jpg')] lg:bg-[length:99%_auto] lg:bg-top lg:bg-fixed min-h-[100svh] lg:min-h-[720px]">
       <div className="hidden lg:block absolute inset-0 bg-black/25 z-0"></div>
       
       <div className="absolute inset-0 z-0 lg:hidden">
         <img 
           src="/0.jpg" 
           alt="Background" 
-          className="w-full h-full object-contain md:object-cover object-center opacity-80 scale-125 md:scale-100"
+          className="w-full h-full object-cover object-[center_20%] md:object-cover md:object-center opacity-80"
         />
         <div className="absolute inset-x-0 top-0 h-1/6 md:h-full bg-gradient-to-b from-black/20 via-black/30 to-gray-900/70"></div>
       </div>
