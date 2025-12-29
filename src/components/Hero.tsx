@@ -9,24 +9,26 @@ export default function Hero() {
         <img 
           src="/0.jpg" 
           alt="Background" 
-          className="w-full h-full object-contain md:object-cover object-[50%_55%] md:object-center opacity-60"
+          className="w-full h-full object-contain md:object-cover object-[50%_55%] opacity-60"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-gray-900/90"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-0 lg:pt-40 lg:pb-36 bg-transparent w-full h-full flex flex-col justify-start lg:block min-h-[90vh] lg:min-h-0">
         <div className="grid grid-cols-1 gap-4 lg:gap-12 items-center justify-items-center h-full">
-          <div className="space-y-6 lg:space-y-10 text-center w-full">
-            <div className="lg:hidden flex flex-col items-center text-center justify-start h-full pt-4 pb-4">
-              <h1 className="text-4xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2">
-                La Tua Prossima<br />
-                <span className="text-orange-500">Auto È Qui.</span>
-              </h1>
-              <p className="text-lg font-medium text-gray-200 drop-shadow-md mt-4 mb-6 max-w-xs">
-                Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
-              </p>
+          <div className="space-y-6 lg:space-y-10 text-center w-full h-full lg:h-auto">
+            <div className="lg:hidden flex flex-col items-center text-center justify-between h-[85vh] py-6">
+              <div>
+                <h1 className="text-4xl font-extrabold leading-tight tracking-tight drop-shadow-lg mb-2">
+                  La Tua Prossima<br />
+                  <span className="text-orange-500">Auto È Qui.</span>
+                </h1>
+                <p className="text-lg font-medium text-gray-200 drop-shadow-md mt-6 max-w-xs mx-auto">
+                  Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
+                </p>
+              </div>
               
-              <div className="w-full max-w-sm space-y-4 mt-72 md:mt-64">
+              <div className="w-full max-w-sm space-y-4">
                 <button
                   onClick={() => {
                     document.getElementById('home-inventory')?.scrollIntoView({ behavior: 'smooth' });
