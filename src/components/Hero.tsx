@@ -22,7 +22,7 @@ export default function Hero() {
                 La Tua Prossima<br />
                 <span className="text-orange-500">Auto È Qui.</span>
               </h1>
-              <p className="text-lg font-medium text-gray-200 drop-shadow-md -mt-4 mb-6 max-w-xs">
+              <p className="text-lg font-medium text-gray-200 drop-shadow-md mt-4 mb-6 max-w-xs">
                 Franzè Garage: Qualità, trasparenza e sicurezza per ogni tuo viaggio.
               </p>
               
